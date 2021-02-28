@@ -3,6 +3,7 @@ import HomePage from './HomePage';
 import Login from './Login';
 
 export default function App(props){
+    document.body.style = 'background: aqua;';
     const [isLogin, setLogin] = React.useState(false)
     const [accNumber,setAccNumber] = React.useState('')
 
