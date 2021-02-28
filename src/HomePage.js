@@ -4,11 +4,12 @@ import Form from './Form';
 
 export default function HomePage(props) {
   document.body.style = 'background: aqua;';
-
   const accNumber = props.accNumber
   const [submitted, setSubmission] = React.useState(false);
   const [subJson, setSubJson] = React.useState({
-    "AccountNumber": accNumber,
+    "AccountNumber": accNumber.customer_id,
+    "Balance": accNumber.balance,
+    "Name":accNumber.nickname,
     "Goal": '',
     "Duration": '',
     "Priority": ''
@@ -16,7 +17,9 @@ export default function HomePage(props) {
 
   const handleSubmit = (goal,duration,priority,value) => {
     setSubJson({
-      "AccountNumber": accNumber,
+      "AccountNumber": accNumber.customer_id,
+      "Name":accNumber.nickname,
+      "Balance": accNumber.balance,
       "Goal": goal,
       "Duration": duration,
       "Priority": priority
