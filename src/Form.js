@@ -65,6 +65,8 @@ const priorityValues = [
   }));
 
 export default function Form(props){
+
+    const classes = useStyles()
     const [goal, setGoal] = React.useState('');
     const [priority, setPriority] = React.useState('');
     const [duration, setDuration] = React.useState('');
@@ -74,7 +76,6 @@ export default function Form(props){
         "Priority": priority
     })
     const handleClear = () => {
-
         setPriority('')
         setGoal('')
         setDuration('')
@@ -105,13 +106,10 @@ export default function Form(props){
         }
         setSubmissionJSON(JSONsub)
         props.onSubmit(submissionJSON)
-
     }
-
-
-
     
     return(
+        <div className={classes.root}>
         <Grid container>
             <Grid container>
               <Grid item xs={3}>
@@ -171,5 +169,6 @@ export default function Form(props){
               </Grid>
             </Grid>
           </Grid>
+          </div>
     )
 }
