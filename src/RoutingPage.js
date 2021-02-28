@@ -1,4 +1,5 @@
 import React from 'react';
+import { userDetails } from './apis/api';
 import HomePage from './HomePage';
 import Login from './Login';
 
@@ -8,12 +9,11 @@ export default function App(props){
     const [accNumber,setAccNumber] = React.useState('')
 
     const handleLogin = async (val) => {
-        await fetch(`http://api.nessieisreal.com/enterprise/accounts/${val}?key=3a077c40b9c82b45d4233610d4275422`).then(res=>{
-            return res.json()
-        }).then(data=>{
+        userDetails(val).then(data=>{
             setAccNumber(data)
             setLogin(true)
-        })
+        }
+        )
     }
     return <div>
         <h1><center>Financial Goal Setting</center></h1>

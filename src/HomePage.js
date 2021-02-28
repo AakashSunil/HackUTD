@@ -9,6 +9,7 @@ export default function HomePage(props) {
   const [subJson, setSubJson] = React.useState({
     "AccountNumber": accNumber.customer_id,
     "Balance": accNumber.balance,
+    "Rewards": accNumber.rewards,
     "Name":accNumber.nickname,
     "Goal": '',
     "Duration": '',
@@ -20,6 +21,7 @@ export default function HomePage(props) {
       "AccountNumber": accNumber.customer_id,
       "Name":accNumber.nickname,
       "Balance": accNumber.balance,
+      "Rewards": accNumber.rewards,
       "Goal": goal,
       "Duration": duration,
       "Priority": priority
@@ -29,6 +31,9 @@ export default function HomePage(props) {
 
   return (
     <div>
+      <div><h3>{`Welcome ${accNumber.nickname}`}</h3></div>
+      <div><h3>{`Current Balance: ${accNumber.balance}`}</h3></div>
+      <div><h3>{`Rewards: ${accNumber.rewards}`}</h3></div>
       
       <Grid container spacing={2}>
         <Grid item xs={6}>
