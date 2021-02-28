@@ -74,7 +74,11 @@ function HomePage() {
   const [priority, setPriority] = React.useState('');
   const [duration, setDuration] = React.useState('');
   const [submitted, setSubmission] = React.useState(false);
-
+  const [submissionJSON, setSubmissionJSON] = React.useState({
+    "Goal": goal,
+    "Duration": duration,
+    "Priority": priority
+  })
   const handleClear = () => {
     setSubmission(false)
     setPriority('')
@@ -89,7 +93,8 @@ function HomePage() {
       "Duration": duration,
       "Priority": priority
     }
-    alert(JSON.stringify(submissionJSON))
+    setSubmissionJSON(submissionJSON)
+    // alert(JSON.stringify(submissionJSON))
 
   }
   const handleChange = (event) => {
@@ -117,6 +122,7 @@ function HomePage() {
                   id="outlined-size-normal"
                   variant="outlined"
                   value={goal}
+                  helperText="Please type in your Goal"
                   onChange={handleChangeGoal}
                 />
               </Grid>
@@ -161,7 +167,7 @@ function HomePage() {
               </Grid>
             </Grid>
             <Grid container>
-              <Grid item xs={3}>
+              <Grid item>
                 <Button variant="contained" onClick={handleSubmit}>Submit</Button>
                 <Button variant="contained" onClick={handleClear}>Clear</Button>
               </Grid>
@@ -169,7 +175,12 @@ function HomePage() {
           </Grid>
         </Grid>
         <Grid item xs={6}>
-          {submitted?<h1>submitted</h1>:<></>}
+          {submitted?
+            <div>
+              <h1>Goal Submitted</h1>
+              <div>{JSON.stringify(submissionJSON)}</div>
+            </div>
+          :<></>}
         </Grid>
       </Grid>
     </div>
