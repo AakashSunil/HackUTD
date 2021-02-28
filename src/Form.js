@@ -47,14 +47,20 @@ const priorityValues = [
   ]
   const useStyles = makeStyles((theme) => ({
     root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '45ch',
-      },
-      '& .MuiButtonBase-root': {
-        margin: theme.spacing(1),
-        width: '22ch',
-      },
+
+        '& .MuiOutlinedInput-input': {
+            background: 'aliceblue'
+        },
+        
+        '& .MuiTextField-root': {
+        
+            margin: theme.spacing(1),
+            width: '45ch',
+        },
+        '& .MuiButtonBase-root': {
+            margin: theme.spacing(1),
+            width: '22ch',
+        },
     },
     text:{
       textAlign:"center"
@@ -70,21 +76,11 @@ export default function Form(props){
     const [goal, setGoal] = React.useState('');
     const [priority, setPriority] = React.useState('');
     const [duration, setDuration] = React.useState('');
-    const [submissionJSON, setSubmissionJSON] = React.useState({
-        "Goal": goal,
-        "Duration": duration,
-        "Priority": priority
-    })
     const handleClear = () => {
         setPriority('')
         setGoal('')
         setDuration('')
-        setSubmissionJSON({
-            "Goal": goal,
-            "Duration": duration,
-            "Priority": priority
-        })
-        props.onClear(submissionJSON)
+        props.onSubmit(goal,duration,priority,0)
     }
     const handleChange = (event) => {
         setDuration(event.target.value);
@@ -99,13 +95,7 @@ export default function Form(props){
     };
 
     const handleSubmit = () => {
-        const JSONsub = {
-            "Goal": goal,
-            "Duration": duration,
-            "Priority": priority
-        }
-        setSubmissionJSON(JSONsub)
-        props.onSubmit(submissionJSON)
+        props.onSubmit(goal,duration,priority,1)
     }
     
     return(
@@ -164,8 +154,8 @@ export default function Form(props){
             </Grid>
             <Grid container>
               <Grid item>
-                <Button variant="contained" onClick={handleSubmit}>Submit</Button>
-                <Button variant="contained" onClick={handleClear}>Clear</Button>
+                <Button variant="contained" onClick={handleSubmit} disabled={goal===""||duration===""||priority===""}>Submit</Button>
+                <Button variant="contained" onClick={handleClear} disabled={goal===""&&duration===""&&priority===""}>Clear</Button>
               </Grid>
             </Grid>
           </Grid>
