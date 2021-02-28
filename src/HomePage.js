@@ -75,6 +75,13 @@ function HomePage() {
   const [duration, setDuration] = React.useState('');
   const [submitted, setSubmission] = React.useState(false);
 
+  const handleClear = () => {
+    setSubmission(false)
+    setPriority('')
+    setGoal('')
+    setDuration('')
+  }
+
   const handleSubmit = () => {
     setSubmission(true)
     const submissionJSON = {
@@ -156,6 +163,7 @@ function HomePage() {
             <Grid container>
               <Grid item xs={3}>
                 <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+                <Button variant="contained" onClick={handleClear}>Clear</Button>
               </Grid>
             </Grid>
           </Grid>
